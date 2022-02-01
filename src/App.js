@@ -1,14 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import MovieDetailsPage from './components/MovieDetailsPage/MovieDetailsPage';
-import MoviesPage from './pages/MoviesPage';
+import HomePage from './pages/HomePage/HomePage';
+import MovieDetailsPage from './pages/MovieDetailsPage/MovieDetailsPage';
+import MoviesPage from './pages/MoviesPage/MoviesPage';
 import Navigation from './components/Navigation/Navigation';
-import Cast from './components/Cast/Cast';
-import Reviews from './components/Reviews/Reviews';
+import Cast from './pages/Cast/Cast';
+import Reviews from './pages/Reviews/Reviews';
+import { AppWrapper } from './App.styled';
 
 function App() {
   return (
-    <div className="App">
+    <AppWrapper>
       <Navigation />
       <Routes>
         <Route path="/" exact="true" element={<HomePage />} />
@@ -19,7 +20,7 @@ function App() {
         </Route>
         <Route path="*" element={<HomePage />} />
       </Routes>
-    </div>
+    </AppWrapper>
   );
 }
 

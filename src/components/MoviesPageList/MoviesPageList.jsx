@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { fetchSearchMovies } from '../../services/api';
-import MoviesList from '../MoviesList/MoviesList';
+import {
+  MoviesList,
+  NavLink,
+  MoviesListItem,
+} from '../MoviesHomeList/MovieHomeList.styled';
 
 const MoviesPageList = ({ searchMovie }) => {
   const [movies, setMovies] = useState([]);
@@ -18,9 +22,16 @@ const MoviesPageList = ({ searchMovie }) => {
   }, [searchMovie]);
 
   return (
-    <>
-      <MoviesList movies={movies} />
-    </>
+    <MoviesList>
+      {movies.map(
+        ({ id, title }) =>
+          title && (
+            <MoviesListItem key={id}>
+              <NavLink to={`${id}`}>{title}</NavLink>
+            </MoviesListItem>
+          )
+      )}
+    </MoviesList>
   );
 };
 export default MoviesPageList;

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Form, Input, ButtonSubmit } from '../SearchBar/SearchBar.styled';
+import { FcSearch } from 'react-icons/fc';
 
 const SearchBar = ({ onSubmit }) => {
   const [searchMovie, setSearchMovie] = useState('');
@@ -18,18 +20,18 @@ const SearchBar = ({ onSubmit }) => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Search movie"
-          onChange={handleMovieChange}
-          value={searchMovie}
-          autoFocus
-        />
-        <button type="submit">Search</button>
-      </form>
-    </>
+    <Form onSubmit={handleSubmit}>
+      <ButtonSubmit type="submit">
+        <FcSearch size={35} />
+      </ButtonSubmit>
+      <Input
+        type="text"
+        placeholder="Search movie"
+        onChange={handleMovieChange}
+        value={searchMovie}
+        autoFocus
+      />
+    </Form>
   );
 };
 export default SearchBar;

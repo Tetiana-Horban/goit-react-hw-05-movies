@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from '../../App.styled';
 
 const Navigation = () => {
   return (
