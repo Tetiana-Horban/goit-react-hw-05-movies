@@ -8,9 +8,11 @@ const Reviews = () => {
   const [reviewMovie, setReviewMovie] = useState([]);
   useEffect(() => {
     const getReviewMovie = () => {
-      fetchMovieReviews(idMovie).then(review => {
-        setReviewMovie(review.results);
-      });
+      fetchMovieReviews(idMovie)
+        .then(review => {
+          setReviewMovie(review.results);
+        })
+        .catch(error => console.error('Error:', error));
     };
     getReviewMovie();
   }, [idMovie]);
