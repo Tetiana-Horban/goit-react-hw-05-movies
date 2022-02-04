@@ -1,5 +1,7 @@
 import { nanoid } from 'nanoid';
 import noPhoto from '../../images/no-photo.png';
+import PropTypes from 'prop-types';
+
 import {
   ListCast,
   ItemCast,
@@ -33,5 +35,14 @@ const CastList = ({ actorsMovie }) => {
       ))}
     </ListCast>
   );
+};
+CastList.propTypes = {
+  actorsMovie: PropTypes.arrayOf(
+    PropTypes.shape({
+      profile_path: PropTypes.string,
+      name: PropTypes.string,
+      character: PropTypes.string,
+    }).isRequired
+  ).isRequired,
 };
 export default CastList;

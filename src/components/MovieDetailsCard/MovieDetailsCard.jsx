@@ -1,5 +1,6 @@
 import noPoster from '../../images/cinema-image-film.png';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 import {
   Text,
   Card,
@@ -8,6 +9,7 @@ import {
   List,
   Item,
   DetailsText,
+  BorderstyleImg,
 } from './MovieDetaiksCard.styled';
 
 const MovieDetailsCard = ({ detailsMovie }) => {
@@ -17,7 +19,7 @@ const MovieDetailsCard = ({ detailsMovie }) => {
     <Card>
       <div>
         {poster_path ? (
-          <img
+          <BorderstyleImg
             src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
             alt={title}
             width={300}
@@ -50,5 +52,15 @@ const MovieDetailsCard = ({ detailsMovie }) => {
       </DetailsText>
     </Card>
   );
+};
+MovieDetailsCard.propTypes = {
+  detailsMovie: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    release_date: PropTypes.string,
+    popularity: PropTypes.number,
+    overview: PropTypes.string,
+    genres: PropTypes.array,
+  }).isRequired,
 };
 export default MovieDetailsCard;

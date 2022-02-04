@@ -8,9 +8,11 @@ const Cast = () => {
   const [actorsMovie, setActorsMovie] = useState([]);
   useEffect(() => {
     const getDetailsMovie = () => {
-      fetchMovieActors(idMovie).then(actors => {
-        setActorsMovie(actors.cast);
-      });
+      fetchMovieActors(idMovie)
+        .then(actors => {
+          setActorsMovie(actors.cast);
+        })
+        .catch(error => console.error('Error:', error));
     };
     getDetailsMovie();
   }, [idMovie]);

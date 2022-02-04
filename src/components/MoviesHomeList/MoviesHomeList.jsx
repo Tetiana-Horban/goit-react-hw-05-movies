@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   MoviesList,
   NavLink,
@@ -17,5 +18,13 @@ const MoviesHomeList = ({ movies }) => {
       )}
     </MoviesList>
   );
+};
+MoviesHomeList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string,
+    })
+  ).isRequired,
 };
 export default MoviesHomeList;

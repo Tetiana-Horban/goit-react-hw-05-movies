@@ -35,4 +35,8 @@ const DetailsText = styled.div`
   max-width: 500px;
   margin-left: 40px;
 `;
-export { Text, Card, Title, BoldText, List, Item, DetailsText };
+const BorderstyleImg = styled.img`
+  border: 2px double black;
+  border-radius: 15px;
+`;
+export { Text, Card, Title, BoldText, List, Item, BorderstyleImg, DetailsText };

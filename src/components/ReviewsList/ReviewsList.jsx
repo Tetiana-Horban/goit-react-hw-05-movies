@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 import {
   TextInfo,
   ListReviews,
@@ -12,10 +13,10 @@ const ReviewsList = ({ reviewMovie }) => {
     <>
       {reviewMovie.length !== 0 ? (
         <ListReviews>
-          {reviewMovie.map(review => (
+          {reviewMovie.map(({ author, content }) => (
             <ItemReviews key={nanoid()}>
-              Authors: <Span>{review.author}</Span>
-              <Text>{review.content}</Text>
+              Authors: <Span>{author}</Span>
+              <Text>{content}</Text>
             </ItemReviews>
           ))}
         </ListReviews>
@@ -26,5 +27,13 @@ const ReviewsList = ({ reviewMovie }) => {
       )}
     </>
   );
+};
+ReviewsList.propTypes = {
+  reviewMovie: PropTypes.arrayOf(
+    PropTypes.shape({
+      author: PropTypes.string,
+      content: PropTypes.string,
+    })
+  ).isRequired,
 };
 export default ReviewsList;
