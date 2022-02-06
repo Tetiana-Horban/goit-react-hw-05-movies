@@ -14,7 +14,19 @@ const MoviesPageList = ({ movies }) => {
         ({ id, title }) =>
           title && (
             <MoviesListItem key={id}>
-              <NavLink to={{ pathname: `${id}` }}>{title}</NavLink>
+              <NavLink
+                to={{
+                  pathname: `${id}`,
+                }}
+                state={{
+                  from: {
+                    ...location,
+                    pathname: location.pathname + location.search,
+                  },
+                }}
+              >
+                {title}
+              </NavLink>
             </MoviesListItem>
           )
       )}
