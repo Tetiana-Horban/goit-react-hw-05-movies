@@ -37,13 +37,6 @@ function App() {
             </Suspense>
           }
         />
-        {/* <Route
-            path="?query=:MoviesList"
-            exact="true"
-            element={<MoviesPageList />}
-          />
-        </Route> */}
-
         <Route
           path="/movies/:idMovie"
           element={

@@ -1,22 +1,31 @@
 import { useState } from 'react';
+import { useSearchParams, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Form, Input, ButtonSubmit } from '../SearchBar/SearchBar.styled';
 import { FcSearch } from 'react-icons/fc';
 
 const SearchBar = ({ onSubmit }) => {
-  const [searchMovie, setSearchMovie] = useState('');
+  const location = useLocation();
+  console.log(location);
+  const [searchMovie, setSearchMovie] = useSearchParams();
 
   const handleMovieChange = event => {
     const normaliseMovieValue = event.currentTarget.value.toLowerCase();
-    setSearchMovie(normaliseMovieValue);
+    if (normaliseMovieValue) {
+      setSearchMovie(`?query=${normaliseMovieValue}`);
+    } else {
+      setSearchMovie({});
+    }
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (searchMovie.trim() === '') {
-      return alert('Enter a search name');
-    }
-    onSubmit(searchMovie);
-    setSearchMovie('');
+    // if (searchMovie.trim() === '') {
+    //   return toast('Enter a search name');
+    // }
+    onSubmit(searchMovie.get('query'));
+    // setSearchMovie('');
+    // onSubmit(searchMovie);
   };
 
   return (
@@ -28,7 +37,7 @@ const SearchBar = ({ onSubmit }) => {
         type="text"
         placeholder="Search movie"
         onChange={handleMovieChange}
-        value={searchMovie}
+        value={searchMovie.get('query') || ''}
         autoFocus
       />
     </Form>
