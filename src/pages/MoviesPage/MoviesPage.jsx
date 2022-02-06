@@ -1,29 +1,29 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { fetchSearchMovies } from '../../services/api';
 import MoviesPageList from '../../components/MoviesPageList/MoviesPageList';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import MoviesPageWrapper from './MoviesPage.styled';
 
 const MoviesPage = () => {
-  const [searchMovie, setSearchMovies] = useState('');
+  const [search, setSearch] = useSearchParams();
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    if (!searchMovie) {
+    if (!search.get('query')) {
       return;
     }
     const getMovies = () => {
-      fetchSearchMovies(searchMovie).then(movies => {
+      fetchSearchMovies(search.get('query')).then(movies => {
         setMovies(movies.results);
       });
     };
     getMovies();
-  }, [searchMovie]);
+  }, [search]);
 
   const handleFormSubmit = searchMovie => {
-    setSearchMovies(searchMovie);
+    setSearch(`?query=${searchMovie}`);
   };
-  console.log(movies);
 
   return (
     <MoviesPageWrapper>
