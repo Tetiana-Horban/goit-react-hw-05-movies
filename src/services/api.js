@@ -1,9 +1,9 @@
 const API = 'https://api.themoviedb.org/3/';
 const API_KEY = '7eedd525998609b7f929e764d7794f3d';
 
-const fetchSearchMovies = name => {
+const fetchSearchMovies = (name, page) => {
   return fetch(
-    `${API}search/movie?api_key=${API_KEY}&query=${name}&language=en-US&page=1&include_adult=false`
+    `${API}search/movie?api_key=${API_KEY}&query=${name}&language=en-US&page=${page}&include_adult=false`
   ).then(response => {
     if (response.ok) {
       return response.json();
@@ -12,13 +12,15 @@ const fetchSearchMovies = name => {
   });
 };
 
-const fetchTrendingMovies = () => {
-  return fetch(`${API}trending/all/day?api_key=${API_KEY}`).then(response => {
-    if (response.ok) {
-      return response.json();
+const fetchTrendingMovies = page => {
+  return fetch(`${API}trending/all/day?api_key=${API_KEY}&page=${page}`).then(
+    response => {
+      if (response.ok) {
+        return response.json();
+      }
+      return Response.error(`error`);
     }
-    return Response.error(`error`);
-  });
+  );
 };
 const fetchMovieDetails = movieId => {
   return fetch(`${API}movie/${movieId}?api_key=${API_KEY}&language=en-US`).then(
