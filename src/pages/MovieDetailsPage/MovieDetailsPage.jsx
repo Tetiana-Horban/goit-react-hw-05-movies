@@ -11,7 +11,7 @@ const MovieDetailsPage = () => {
   const navigation = useNavigate();
   let { idMovie } = useParams();
   const [detailsMovie, setDetailsMovie] = useState({});
-  let from = location.state?.from?.pathname || '/';
+  let from = location.state?.from?.pathname ?? '/';
 
   useEffect(() => {
     const getDetailsMovie = () => {
@@ -45,9 +45,6 @@ const MovieDetailsPage = () => {
       </div>
       <ButtonBack
         onClick={() => {
-          if (!location.state) {
-            navigation(-1);
-          }
           navigation(from);
         }}
       />
