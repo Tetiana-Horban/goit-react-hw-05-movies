@@ -7,25 +7,20 @@ import { FcSearch } from 'react-icons/fc';
 const SearchBar = ({ onSubmit }) => {
   const location = useLocation();
   console.log(location);
-  const [searchMovie, setSearchMovie] = useSearchParams();
+  const [searchMovie, setSearchMovie] = useState('');
 
   const handleMovieChange = event => {
     const normaliseMovieValue = event.currentTarget.value.toLowerCase();
-    if (normaliseMovieValue) {
-      setSearchMovie(`?query=${normaliseMovieValue}`);
-    } else {
-      setSearchMovie({});
-    }
+    setSearchMovie(normaliseMovieValue);
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    // if (searchMovie.trim() === '') {
-    //   return toast('Enter a search name');
-    // }
-    onSubmit(searchMovie.get('query'));
-    // setSearchMovie('');
-    // onSubmit(searchMovie);
+    if (searchMovie.trim() === '') {
+      return toast('Enter a search name');
+    }
+    onSubmit(searchMovie);
+    setSearchMovie('');
   };
 
   return (
@@ -37,7 +32,7 @@ const SearchBar = ({ onSubmit }) => {
         type="text"
         placeholder="Search movie"
         onChange={handleMovieChange}
-        value={searchMovie.get('query') || ''}
+        value={searchMovie}
         autoFocus
       />
     </Form>
