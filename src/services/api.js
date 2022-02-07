@@ -8,7 +8,7 @@ const fetchSearchMovies = (name, page) => {
     if (response.ok) {
       return response.json();
     }
-    return Response.error(`error`);
+    return Promise.reject(new Error(`Nothing found`));
   });
 };
 
@@ -18,7 +18,7 @@ const fetchTrendingMovies = page => {
       if (response.ok) {
         return response.json();
       }
-      return Response.error(`error`);
+      return Promise.reject(new Error(`Nothing found`));
     }
   );
 };
@@ -28,7 +28,7 @@ const fetchMovieDetails = movieId => {
       if (response.ok) {
         return response.json();
       }
-      return Response.error(`error`);
+      return Promise.reject(new Error(`Nothing found`));
     }
   );
 };
@@ -40,7 +40,7 @@ const fetchMovieActors = movieId => {
     if (response.ok) {
       return response.json();
     }
-    return Response.error(`error`);
+    return Promise.reject(new Error(`Nothing found`));
   });
 };
 
@@ -51,7 +51,7 @@ const fetchMovieReviews = movieId => {
     if (response.ok) {
       return response.json();
     }
-    return Response.error(`error`);
+    return Promise.reject(new Error(`Nothing found`));
   });
 };
 
