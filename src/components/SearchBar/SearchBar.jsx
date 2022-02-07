@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { useSearchParams, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Form, Input, ButtonSubmit } from '../SearchBar/SearchBar.styled';
 import { FcSearch } from 'react-icons/fc';
+import PropTypes from 'prop-types';
 
 const SearchBar = ({ onSubmit }) => {
-  const location = useLocation();
-  console.log(location);
   const [searchMovie, setSearchMovie] = useState('');
 
   const handleMovieChange = event => {
@@ -37,5 +35,8 @@ const SearchBar = ({ onSubmit }) => {
       />
     </Form>
   );
+};
+SearchBar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
 export default SearchBar;

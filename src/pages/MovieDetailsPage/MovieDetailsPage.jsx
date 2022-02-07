@@ -7,11 +7,10 @@ import ButtonBack from '../../components/ButtonBack/ButtonBack';
 
 const MovieDetailsPage = () => {
   const location = useLocation();
-  console.log(location);
   const navigation = useNavigate();
   let { idMovie } = useParams();
   const [detailsMovie, setDetailsMovie] = useState({});
-  let from = location.state?.from?.pathname ?? '/';
+  let fromLink = location?.state?.from ?? '/';
 
   useEffect(() => {
     const getDetailsMovie = () => {
@@ -26,28 +25,32 @@ const MovieDetailsPage = () => {
 
   return (
     <div>
+      <ButtonBack
+        onClick={() => {
+          navigation(fromLink);
+        }}
+      />
+
       <MovieDetailsCard detailsMovie={detailsMovie} />
       <div>
         <List>
           Additional information
           <Item>
-            <NavLink to={{ pathname: 'cast' }} state={{ from: location }}>
+            <NavLink to="cast" state={{ from: location?.state?.from ?? '/' }}>
               Cast
             </NavLink>
           </Item>
           <Item>
-            <NavLink to={{ pathname: 'reviews' }} state={{ from: location }}>
+            <NavLink
+              to="reviews"
+              state={{ from: location?.state?.from ?? '/' }}
+            >
               Reviews
             </NavLink>
           </Item>
         </List>
         <Outlet />
       </div>
-      <ButtonBack
-        onClick={() => {
-          navigation(from);
-        }}
-      />
     </div>
   );
 };

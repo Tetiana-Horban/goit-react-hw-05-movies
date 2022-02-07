@@ -10,6 +10,7 @@ const ButtonMore = ({ onClick, label }) => {
 };
 ButtonMore.propTypes = {
   onClick: PropTypes.func.isRequired,
+  label: PropTypes.string,
 };
 
 export default ButtonMore;

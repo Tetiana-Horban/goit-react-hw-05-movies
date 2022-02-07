@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { fetchSearchMovies } from '../../services/api';
 import ButtonMore from '../../components/ButtonMore/ButtonMore';
 import MoviesPageList from '../../components/MoviesPageList/MoviesPageList';
@@ -19,14 +19,16 @@ const MoviesPage = () => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useSearchParams();
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
+  const query = search.get('query');
 
   useEffect(() => {
-    if (!search.get('query')) {
+    if (!query) {
       return;
     }
     setStatus(Status.PENDING);
     const getMovies = () => {
-      fetchSearchMovies(search.get('query'), page)
+      fetchSearchMovies(query, page)
         .then(movies => {
           setMovies(prevMovies => [...prevMovies, ...movies.results]);
           setStatus(Status.RESOLVED);
@@ -38,7 +40,7 @@ const MoviesPage = () => {
         });
     };
     getMovies();
-  }, [page, search]);
+  }, [page, query]);
   const handleFormSubmit = searchMovie => {
     setSearch(`?query=${searchMovie}`);
   };
@@ -56,7 +58,9 @@ const MoviesPage = () => {
     <MoviesPageWrapper>
       <SearchBar onSubmit={handleFormSubmit} />
       {status === 'rejected' && <h1>{error.message}</h1>}
-      {status === 'resolved' && <MoviesPageList movies={movies} />}
+      {status === 'resolved' && (
+        <MoviesPageList movies={movies} locationFrom={location} />
+      )}
       {movies.length > 0 && (
         <ButtonMore label={`More Movies`} onClick={changePage} />
       )}

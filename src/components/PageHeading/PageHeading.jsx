@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Title = styled.h1`
   font-size: 35px;
@@ -9,5 +10,8 @@ const Title = styled.h1`
 
 const PageHeading = ({ title }) => {
   return <Title>{title}</Title>;
+};
+PageHeading.propTypes = {
+  title: PropTypes.string,
 };
 export default PageHeading;
