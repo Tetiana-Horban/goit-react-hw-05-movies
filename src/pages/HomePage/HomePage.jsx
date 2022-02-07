@@ -19,11 +19,13 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
+    setStatus(Status.PENDING);
     const getTrendingFilms = () => {
       fetchTrendingMovies(page)
         .then(movies => {
           setMovies(prevMovies => [...prevMovies, ...movies.results]);
           setStatus(Status.RESOLVED);
+          scrollToButton();
         })
         .catch(error => {
           setError(error);
@@ -35,6 +37,12 @@ const HomePage = () => {
 
   const changePage = () => {
     setPage(prevPage => prevPage + 1);
+  };
+  const scrollToButton = () => {
+    window.scrollBy({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
   };
   return (
     <>

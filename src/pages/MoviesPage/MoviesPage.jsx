@@ -24,11 +24,13 @@ const MoviesPage = () => {
     if (!search.get('query')) {
       return;
     }
+    setStatus(Status.PENDING);
     const getMovies = () => {
       fetchSearchMovies(search.get('query'), page)
         .then(movies => {
           setMovies(prevMovies => [...prevMovies, ...movies.results]);
           setStatus(Status.RESOLVED);
+          scrollToButton();
         })
         .catch(error => {
           setError(error);
@@ -37,13 +39,17 @@ const MoviesPage = () => {
     };
     getMovies();
   }, [page, search]);
-
   const handleFormSubmit = searchMovie => {
     setSearch(`?query=${searchMovie}`);
   };
-
   const changePage = () => {
     setPage(prevPage => prevPage + 1);
+  };
+  const scrollToButton = () => {
+    window.scrollBy({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
   };
 
   return (
