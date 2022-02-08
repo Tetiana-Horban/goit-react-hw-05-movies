@@ -19,7 +19,7 @@ const Cast = () => {
   }, [idMovie]);
   return (
     <Container>
-      <CastList actorsMovie={actorsMovie} />;
+      <CastList actorsMovie={actorsMovie} />
     </Container>
   );
 };
