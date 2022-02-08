@@ -11,6 +11,8 @@ const Button = styled.button`
   min-width: 200px;
   font-size: 25px;
   font-weight: 700;
+  margin-left: 15px;
+  margin-top: 40px;
   &:hover,
   &:focus {
     color: blue;

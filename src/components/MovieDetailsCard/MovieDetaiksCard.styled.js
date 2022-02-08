@@ -32,7 +32,6 @@ const Item = styled.li`
   }
 `;
 const DetailsText = styled.div`
-  max-width: 500px;
   margin-left: 40px;
 `;
 const BorderstyleImg = styled.img`

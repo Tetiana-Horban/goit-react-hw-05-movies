@@ -32,5 +32,8 @@ const AppWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+const Container = styled.div`
+  max-width: 1200px;
+`;
 
-export { GlobalStyle, AppWrapper, NavLink };
+export { GlobalStyle, AppWrapper, NavLink, Container };

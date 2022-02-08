@@ -4,6 +4,7 @@ import { Outlet, useParams, useNavigate, useLocation } from 'react-router-dom';
 import MovieDetailsCard from '../../components/MovieDetailsCard/MovieDetailsCard';
 import { NavLink, List, Item } from './MovieDetailsPage.styled';
 import ButtonBack from '../../components/ButtonBack/ButtonBack';
+import { Container } from '../../App.styled';
 
 const MovieDetailsPage = () => {
   const location = useLocation();
@@ -24,14 +25,13 @@ const MovieDetailsPage = () => {
   }, [idMovie]);
 
   return (
-    <div>
+    <Container>
+      <MovieDetailsCard detailsMovie={detailsMovie} />
       <ButtonBack
         onClick={() => {
           navigation(fromLink);
         }}
       />
-
-      <MovieDetailsCard detailsMovie={detailsMovie} />
       <div>
         <List>
           Additional information
@@ -51,7 +51,7 @@ const MovieDetailsPage = () => {
         </List>
         <Outlet />
       </div>
-    </div>
+    </Container>
   );
 };
 export default MovieDetailsPage;

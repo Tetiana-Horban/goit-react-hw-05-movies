@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieActors } from '../../services/api';
 import CastList from '../../components/CastList/CastList';
+import { Container } from '../../App.styled';
 
 const Cast = () => {
   let { idMovie } = useParams();
@@ -17,9 +18,9 @@ const Cast = () => {
     getDetailsMovie();
   }, [idMovie]);
   return (
-    <>
+    <Container>
       <CastList actorsMovie={actorsMovie} />;
-    </>
+    </Container>
   );
 };
 export default Cast;

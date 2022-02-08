@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { fetchMovieReviews } from '../../services/api';
 import ReviewsList from '../../components/ReviewsList/ReviewsList';
+import { Container } from '../../App.styled';
 
 const Reviews = () => {
   let { idMovie } = useParams();
@@ -16,6 +17,10 @@ const Reviews = () => {
     };
     getReviewMovie();
   }, [idMovie]);
-  return <ReviewsList reviewMovie={reviewMovie} />;
+  return (
+    <Container>
+      <ReviewsList reviewMovie={reviewMovie} />
+    </Container>
+  );
 };
 export default Reviews;
