@@ -4,7 +4,6 @@ import ButtonMore from '../../components/ButtonMore/ButtonMore';
 import Loader from '../../components/Loader/Loader';
 import PageHeading from '../../components/PageHeading/PageHeading';
 import MoviesHomeList from '../../components/MoviesHomeList/MoviesHomeList';
-import { Container } from '../../App.styled';
 
 const Status = {
   IDLE: 'idle',
@@ -46,7 +45,7 @@ const HomePage = () => {
     });
   };
   return (
-    <Container>
+    <>
       <PageHeading title={'Tranding today'} />
       {status === 'pending' && <Loader />}
       {status === 'rejected' && <h1>{error.message}</h1>}
@@ -54,7 +53,7 @@ const HomePage = () => {
       {movies.length > 0 && (
         <ButtonMore label={`More Trending Movies`} onClick={changePage} />
       )}
-    </Container>
+    </>
   );
 };
 export default HomePage;
